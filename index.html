@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>馬來西亞・新加坡七日之旅 · 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    /* ── Custom Properties ── */
+    :root {
+      --navy:         #0d2847;
+      --navy-mid:     #0e4f6b;
+      --teal:         #0e7490;
+      --teal-dark:    #0c5f77;
+      --teal-light:   #cffafe;
+      --teal-bg:      #e0f9fc;
+      --sky-soft:     #e0f2fe;
+      --ocean:        #0077b6;
+      --ocean-light:  #caf0f8;
+      --ocean-bg:     #e8f8ff;
+      --tropical:     #2d9d5c;
+      --tropical-light: #bbf7d0;
+      --tropical-bg:  #f0fdf4;
+      --amber:        #d97706;
+      --amber-dark:   #b45309;
+      --amber-light:  #fef3c7;
+      --amber-bg:     #fffbeb;
+      --green:        #15803d;
+      --green-light:  #dcfce7;
+      --green-bg:     #f0fdf4;
+      --red:          #dc2626;
+      --red-light:    #fee2e2;
+      --red-bg:       #fff5f5;
+      --purple:       #7c3aed;
+      --purple-light: #ede9fe;
+      --purple-bg:    #faf5ff;
+      --gold:         #ca8a04;
+      --gold-light:   #fefce8;
+      --orange:       #ea580c;
+      --orange-light: #ffedd5;
+      --orange-bg:    #fff7ed;
+      --slate:        #334155;
+      --slate-mid:    #475569;
+      --slate-light:  #94a3b8;
+      --gray-bg:      #f8fafc;
+      --border:       #e2e8f0;
+      --white:        #ffffff;
+      --radius-sm:    6px;
+      --radius-md:    10px;
+      --radius-lg:    16px;
+      --radius-xl:    24px;
+      --shadow-sm:    0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md:    0 4px 12px rgba(0,0,0,0.10);
+      --shadow-lg:    0 8px 28px rgba(0,0,0,0.14);
+      --font-serif:   'Noto Serif TC', 'PingFang TC', 'Microsoft JhengHei', serif;
+      --font-sans:    'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-sans);
+      color: var(--slate);
+      background: var(--gray-bg);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ── Sticky Header ── */
+    #site-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--navy);
+      height: 52px;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .header-brand {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+    .header-brand span { color: #7dd3fc; }
+    .day-nav {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      flex: 1;
+      justify-content: flex-end;
+    }
+    .day-nav::-webkit-scrollbar { display: none; }
+    .day-nav-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      background: rgba(255,255,255,0.1);
+      color: #bfdbfe;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s;
+    }
+    .day-nav-link:hover,
+    .day-nav-link.active {
+      background: var(--teal);
+      color: var(--white);
+    }
+    .hamburger { display: none; flex-direction: column; gap: 5px; padding: 6px; }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 52px; left: 0; right: 0;
+      background: var(--navy);
+      padding: 12px 20px 16px;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav .day-nav-link { justify-content: center; font-size: 0.9rem; padding: 8px; }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 90vh;
+      background:
+        linear-gradient(150deg, #7c2d12 0%, #c2410c 25%, #0e7490 65%, #0d2847 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 25% 35%, rgba(234,88,12,0.3) 0%, transparent 50%),
+        radial-gradient(circle at 75% 65%, rgba(14,116,144,0.35) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: #fcd34d;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+      position: relative;
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: #fed7aa;
+      margin-bottom: 40px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      position: relative;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 48px;
+    }
+    .stat-pill {
+      padding: 8px 20px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-xl);
+      color: var(--white);
+      font-size: 0.88rem;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+      letter-spacing: 0.02em;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.5);
+      font-size: 1.4rem;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── Route Bar ── */
+    #route {
+      background: var(--white);
+      padding: 48px 0 44px;
+      border-bottom: 1px solid var(--border);
+    }
+    .route-label {
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--slate-light);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .route-scroll-wrap {
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 0 32px 8px;
+    }
+    .route-scroll-wrap::-webkit-scrollbar { display: none; }
+    .route-track {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      min-width: 680px;
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .route-track::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 32px; right: 32px;
+      border-top: 2px dashed #cbd5e1;
+      z-index: 0;
+    }
+    .route-stop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      z-index: 1;
+      min-width: 72px;
+    }
+    .stop-circle {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      border: 3px solid var(--white);
+      box-shadow: var(--shadow-md);
+    }
+    .stop-circle.flight   { background: var(--teal); }
+    .stop-circle.beach    { background: var(--ocean); }
+    .stop-circle.nature   { background: var(--tropical); }
+    .stop-circle.city     { background: var(--purple); }
+    .stop-circle.theme    { background: var(--orange); }
+    .stop-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      text-align: center;
+      line-height: 1.2;
+    }
+    .stop-date {
+      font-size: 0.68rem;
+      color: var(--slate-light);
+      text-align: center;
+    }
+
+    /* ── Itinerary Section ── */
+    #itinerary {
+      padding: 60px 0 80px;
+      background: var(--gray-bg);
+    }
+    .section-title {
+      text-align: center;
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 48px;
+      letter-spacing: 0.04em;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ── Day Block ── */
+    .day-block {
+      margin-bottom: 20px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      scroll-margin-top: 64px;
+    }
+    .day-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--navy);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+    .day-header:hover { background: #112f56; }
+    .day-header.langkawi { background: #0c3d5c; }
+    .day-header.langkawi:hover { background: #0a3050; }
+    .day-header.singapore { background: #2d1b69; }
+    .day-header.singapore:hover { background: #231357; }
+    .day-num {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--teal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--font-serif);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      text-align: center;
+    }
+    .day-header.langkawi .day-num { background: var(--ocean); }
+    .day-header.singapore .day-num { background: var(--purple); }
+    .day-info { flex: 1; min-width: 0; }
+    .day-date {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+    .day-theme {
+      font-size: 0.78rem;
+      color: #93c5fd;
+      margin-top: 2px;
+    }
+    .day-header.langkawi .day-theme { color: #7dd3fc; }
+    .day-header.singapore .day-theme { color: #c4b5fd; }
+    .day-stay {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      color: #bae6fd;
+      white-space: nowrap;
+    }
+    .chevron {
+      color: var(--white);
+      font-size: 1.1rem;
+      transition: transform 0.3s;
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+    .chevron.open { transform: rotate(90deg); }
+
+    /* ── Day Body (Accordion) ── */
+    .day-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s ease, opacity 0.3s ease;
+      opacity: 0;
+      background: var(--white);
+    }
+    .day-body.open { opacity: 1; }
+    .entry-list {
+      padding: 20px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+    }
+    .entry-list::before {
+      content: '';
+      position: absolute;
+      left: 40px; top: 28px; bottom: 28px;
+      width: 2px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    /* ── Meal Summary Bar ── */
+    .meal-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 10px 14px;
+      background: #f8fafc;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      margin-bottom: 4px;
+    }
+    .meal-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.78rem;
+      color: var(--slate-mid);
+    }
+    .meal-label {
+      font-weight: 600;
+      font-size: 0.7rem;
+    }
+    .meal-label.bk { color: #0891b2; }
+    .meal-label.lk { color: var(--amber-dark); }
+    .meal-label.dk { color: #991b1b; }
+
+    /* ── Entry ── */
+    .entry {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .time-badge {
+      min-width: 52px;
+      text-align: right;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--slate-light);
+      padding-top: 10px;
+      letter-spacing: 0.01em;
+      flex-shrink: 0;
+    }
+    .entry-icon {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      border: 2px solid var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+    .entry-content {
+      flex: 1;
+      min-width: 0;
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      border-left: 3px solid transparent;
+    }
+    .entry-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .entry-detail {
+      font-size: 0.8rem;
+      color: var(--slate-mid);
+      margin-top: 3px;
+      line-height: 1.45;
+    }
+
+    /* Entry Type Variants */
+    .entry--flight .entry-icon  { background: var(--teal); color: white; }
+    .entry--flight .entry-content {
+      background: var(--teal-bg);
+      border-color: var(--teal);
+    }
+    .entry--beach .entry-icon   { background: var(--ocean); color: white; }
+    .entry--beach .entry-content {
+      background: var(--ocean-bg);
+      border-color: var(--ocean);
+    }
+    .entry--sight .entry-icon   { background: var(--tropical); color: white; }
+    .entry--sight .entry-content {
+      background: var(--tropical-bg);
+      border-color: var(--tropical);
+    }
+    .entry--theme .entry-icon   { background: var(--orange); color: white; }
+    .entry--theme .entry-content {
+      background: var(--orange-bg);
+      border-color: var(--orange);
+    }
+    .entry--nature .entry-icon  { background: var(--green); color: white; }
+    .entry--nature .entry-content {
+      background: var(--green-bg);
+      border-color: var(--green);
+    }
+    .entry--shop .entry-icon    { background: #db2777; color: white; }
+    .entry--shop .entry-content {
+      background: #fdf2f8;
+      border-color: #db2777;
+    }
+    .entry--hotel .entry-icon   { background: var(--purple); color: white; }
+    .entry--hotel .entry-content {
+      background: var(--purple-bg);
+      border-color: var(--purple);
+    }
+    .entry--transport .entry-icon { background: var(--slate-mid); color: white; }
+    .entry--transport .entry-content {
+      background: #f8fafc;
+      border-color: var(--border);
+    }
+    .entry--night .entry-icon   { background: #1e1b4b; color: #c4b5fd; }
+    .entry--night .entry-content {
+      background: #f5f3ff;
+      border-color: #4f46e5;
+    }
+
+    /* Boarding Pass */
+    .boarding-pass {
+      border: 2px dashed var(--teal);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      background: linear-gradient(135deg, var(--teal-bg) 0%, #f0f9ff 100%);
+      margin-top: 6px;
+    }
+    .bp-route {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .bp-airport {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: 0.05em;
+    }
+    .bp-arrow {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--teal);
+      font-size: 1.1rem;
+    }
+    .bp-arrow::before,
+    .bp-arrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--teal);
+      opacity: 0.4;
+    }
+    .bp-details {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .bp-field { font-size: 0.72rem; }
+    .bp-field-label {
+      color: var(--slate-light);
+      font-weight: 500;
+      display: block;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .bp-field-val { font-weight: 600; color: var(--navy); }
+    .flight-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 10px;
+      background: var(--teal);
+      color: var(--white);
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .booked-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 2px 8px;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      border-radius: 20px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      margin-left: 6px;
+    }
+
+    /* Info Tag */
+    .info-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 1px 8px;
+      border-radius: 20px;
+      font-size: 0.68rem;
+      font-weight: 500;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .info-tag--blue   { background: #dbeafe; color: #1d4ed8; }
+    .info-tag--green  { background: var(--green-light); color: var(--green); }
+    .info-tag--orange { background: var(--orange-light); color: #9a3412; }
+    .info-tag--purple { background: var(--purple-light); color: #5b21b6; }
+    .info-tag--red    { background: var(--red-light); color: #991b1b; }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(12px);
+      background: #1e293b;
+      color: var(--white);
+      padding: 10px 22px;
+      border-radius: var(--radius-xl);
+      font-size: 0.85rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+      z-index: 999;
+      white-space: nowrap;
+      box-shadow: var(--shadow-lg);
+    }
+    #toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── Region Divider ── */
+    .region-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 32px 0 16px;
+    }
+    .region-divider::before,
+    .region-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .region-label {
+      font-family: var(--font-serif);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--slate-light);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--navy);
+      color: #93c5fd;
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .day-nav { display: none; }
+      .hamburger { display: flex; margin-left: auto; }
+      #site-header { padding: 0 16px; }
+      .hero-stats { gap: 8px; }
+      .stat-pill { font-size: 0.8rem; padding: 6px 14px; }
+      .entry-list { padding: 16px 14px 20px; }
+      .entry-list::before { left: 34px; }
+      .time-badge { min-width: 44px; font-size: 0.68rem; }
+      .bp-route { gap: 6px; }
+      .bp-airport { font-size: 1.1rem; }
+      .day-header { padding: 14px 16px; gap: 10px; }
+      .day-stay { display: none; }
+    }
+    @media (max-width: 400px) {
+      .boarding-pass { padding: 10px; }
+      .bp-details { gap: 10px; }
+    }
+
+    /* ── Print ── */
+    @media print {
+      #site-header, #route { display: none; }
+      .day-body { max-height: none !important; opacity: 1 !important; overflow: visible !important; }
+      .chevron { display: none; }
+      .day-block { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; margin-bottom: 16px; }
+      body { background: white; color: black; }
+      #hero {
+        min-height: auto; padding: 32px 16px;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Sticky Header ── -->
+<header id="site-header">
+  <div class="header-brand">🌴 <span>馬來西亞</span>・新加坡</div>
+  <nav class="day-nav" aria-label="Day navigation">
+    <a class="day-nav-link" href="#day-1">Day 1</a>
+    <a class="day-nav-link" href="#day-2">Day 2</a>
+    <a class="day-nav-link" href="#day-3">Day 3</a>
+    <a class="day-nav-link" href="#day-4">Day 4</a>
+    <a class="day-nav-link" href="#day-5">Day 5</a>
+    <a class="day-nav-link" href="#day-6">Day 6</a>
+    <a class="day-nav-link" href="#day-7">Day 7</a>
+  </nav>
+  <button class="hamburger" aria-label="Open navigation" aria-expanded="false" id="hamburger">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile day navigation">
+    <a class="day-nav-link" href="#day-1">Day 1 — 出發·浮羅交怡</a>
+    <a class="day-nav-link" href="#day-2">Day 2 — 芭雅島潛水</a>
+    <a class="day-nav-link" href="#day-3">Day 3 — 天空之橋</a>
+    <a class="day-nav-link" href="#day-4">Day 4 — 出發·新加坡</a>
+    <a class="day-nav-link" href="#day-5">Day 5 — 環球影城</a>
+    <a class="day-nav-link" href="#day-6">Day 6 — 雲霧林·超級樹</a>
+    <a class="day-nav-link" href="#day-7">Day 7 — 回程·香港</a>
+  </nav>
+</header>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <p class="hero-eyebrow">MALAYSIA · SINGAPORE · 2026</p>
+  <h1 class="hero-title">馬來西亞・新加坡七日之旅</h1>
+  <p class="hero-subtitle">2026年 6月27日（六）— 7月3日（五）</p>
+  <div class="hero-stats">
+    <span class="stat-pill">✈️ 7天6夜</span>
+    <span class="stat-pill">🏝️ 浮羅交怡 3 晚</span>
+    <span class="stat-pill">🦁 新加坡 3 晚</span>
+    <span class="stat-pill">🤿 芭雅島潛水</span>
+    <span class="stat-pill">🎡 環球影城</span>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">↓</div>
+</section>
+
+<!-- ── Route Bar ── -->
+<section id="route">
+  <p class="route-label">Journey Route</p>
+  <div class="route-scroll-wrap">
+    <div class="route-track">
+      <div class="route-stop">
+        <div class="stop-circle flight">✈️</div>
+        <div class="stop-name">香港<br>HKG</div>
+        <div class="stop-date">6/27 出發</div>
+      </div>
+      <div class="route-stop">
+        <div class="stop-circle flight">✈️</div>
+        <div class="stop-name">吉隆坡<br>KUL</div>
+        <div class="stop-date">轉機</div>
+      </div>
+      <div class="route-stop">
+        <div class="stop-circle beach">🏝️</div>
+        <div class="stop-name">浮羅交怡<br>LGK</div>
+        <div class="stop-date">Day 1–3</div>
+      </div>
+      <div class="route-stop">
+        <div class="stop-circle nature">🤿</div>
+        <div class="stop-name">芭雅島</div>
+        <div class="stop-date">Day 2</div>
+      </div>
+      <div class="route-stop">
+        <div class="stop-circle city">🦁</div>
+        <div class="stop-name">新加坡<br>SIN</div>
+        <div class="stop-date">Day 4–6</div>
+      </div>
+      <div class="route-stop">
+        <div class="stop-circle theme">🎡</div>
+        <div class="stop-name">聖淘沙</div>
+        <div class="stop-date">Day 5</div>
+      </div>
+      <div class="route-stop">
+        <div class="stop-circle flight">✈️</div>
+        <div class="stop-name">香港<br>HKG</div>
+        <div class="stop-date">7/3 回程</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Itinerary ── -->
+<section id="itinerary">
+  <div class="container">
+    <h2 class="section-title">行程詳覽</h2>
+
+    <!-- ╔══════════════════ LANGKAWI ══════════════════╗ -->
+    <div class="region-divider">
+      <span class="region-label">🏝️ 浮羅交怡 · Langkawi</span>
+    </div>
+
+    <!-- ╔══════════════════ DAY 1 ══════════════════╗ -->
+    <div class="day-block" id="day-1">
+      <div class="day-header langkawi" role="button" aria-expanded="false" tabindex="0">
+        <div class="day-num">D<br>1</div>
+        <div class="day-info">
+          <div class="day-date">6月27日（六）· 浮羅交怡</div>
+          <div class="day-theme">✈️ 出發日 · 香港 → KUL → LGK · 珍南大街</div>
+        </div>
+        <div class="day-stay">🏠 Pelangi Beach Resort</div>
+        <span class="chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="day-body">
+        <div class="entry-list">
+
+          <div class="entry entry--flight">
+            <div class="time-badge">11:55</div>
+            <div class="entry-icon">✈️</div>
+            <div class="entry-content">
+              <div class="entry-title">香港 出發 <span class="booked-badge">✓ 已 Book</span></div>
+              <div class="boarding-pass">
+                <div class="bp-route">
+                  <span class="bp-airport">HKG</span>
+                  <div class="bp-arrow">✈️</div>
+                  <span class="bp-airport">KUL</span>
+                </div>
+                <div class="bp-details">
+                  <div class="bp-field">
+                    <span class="bp-field-label">航班</span>
+                    <span class="bp-field-val"><span class="flight-badge">AK 139</span></span>
+                  </div>
+                  <div class="bp-field">
+                    <span class="bp-field-label">出發</span>
+                    <span class="bp-field-val">11:55</span>
+                  </div>
+                  <div class="bp-field">
+                    <span class="bp-field-label">備注</span>
+                    <span class="bp-field-val">轉機 KUL</span>
+                  </div>
+                </div>
+              </div>
+              <div class="boarding-pass" style="margin-top:8px;">
+                <div class="bp-route">
+                  <span class="bp-airport">KUL</span>
+                  <div class="bp-arrow">✈️</div>
+                  <span class="bp-airport">LGK</span>
+                </div>
+                <div class="bp-details">
+                  <div class="bp-field">
+                    <span class="bp-field-label">航班</span>
+                    <span class="bp-field-val"><span class="flight-badge">AK 6314</span></span>
+                  </div>
+                  <div class="bp-field">
+                    <span class="bp-field-label">抵達</span>
+                    <span class="bp-field-val">19:05</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="entry entry--transport">
+            <div class="time-badge">19:30</div>
+            <div class="entry-icon">🚗</div>
+            <div class="entry-content">
+              <div class="entry-title">Grab 往酒店</div>
+              <div class="entry-detail">LGK 機場 → Pelangi Beach Resort & Spa</div>
+            </div>
+          </div>
+
+          <div class="entry entry--hotel">
+            <div class="time-badge">20:30</div>
+            <div class="entry-icon">🏨</div>
+            <div class="entry-content">
+              <div class="entry-title">酒店 Check-in</div>
+              <div class="entry-detail">Pelangi Beach Resort & Spa · 珍南海灘</div>
+            </div>
+          </div>
+
+          <div class="entry entry--beach">
+            <div class="time-badge">晚上</div>
+            <div class="entry-icon">🌆</div>
+            <div class="entry-content">
+              <div class="entry-title">珍南大街散步</div>
+              <div class="entry-detail">沿珍南 (Cenang) 海灘大街漫步，感受熱帶夜晚氣息</div>
+            </div>
+          </div>
+
+          <div class="meal-bar">
+            <div class="meal-item"><span class="meal-label bk">早</span> 自理</div>
+            <div class="meal-item"><span class="meal-label lk">午</span> 機上</div>
+            <div class="meal-item"><span class="meal-label dk">晚</span> 珍南海鮮（強師傅）🦞</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ╔══════════════════ DAY 2 ══════════════════╗ -->
+    <div class="day-block" id="day-2">
+      <div class="day-header langkawi" role="button" aria-expanded="false" tabindex="0">
+        <div class="day-num">D<br>2</div>
+        <div class="day-info">
+          <div class="day-date">6月28日（日）· 浮羅交怡</div>
+          <div class="day-theme">🤿 芭雅島潛水・浮潛 · 🛍️ 瓜鎮免稅店</div>
+        </div>
+        <div class="day-stay">🏠 Pelangi Beach Resort</div>
+        <span class="chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="day-body">
+        <div class="entry-list">
+
+          <div class="entry entry--transport">
+            <div class="time-badge">08:30</div>
+            <div class="entry-icon">🚐</div>
+            <div class="entry-content">
+              <div class="entry-title">潛店專車接送</div>
+              <div class="entry-detail">往碼頭，乘船前往芭雅島 (Pulau Payar)</div>
+            </div>
+          </div>
+
+          <div class="entry entry--beach">
+            <div class="time-badge">09:00–<br>16:30</div>
+            <div class="entry-icon">🤿</div>
+            <div class="entry-content">
+              <div class="entry-title">芭雅島 潛水 / 浮潛</div>
+              <div class="entry-detail">馬來西亞著名珊瑚礁保護區 · 清澈海水 · 熱帶魚群 🐠🐡</div>
+              <div class="entry-detail">午餐便當隨行提供</div>
+            </div>
+          </div>
+
+          <div class="entry entry--shop">
+            <div class="time-badge">18:30–<br>20:30</div>
+            <div class="entry-icon">🛍️</div>
+            <div class="entry-content">
+              <div class="entry-title">瓜鎮免稅店 <span class="info-tag info-tag--green">免稅</span></div>
+              <div class="entry-detail">購買朱古力（Beryl's、Beryl's Almond 等）及手信</div>
+              <div class="entry-detail">地點：Kuah Town · Langkawi Fair Shopping Mall</div>
+            </div>
+          </div>
+
+          <div class="meal-bar">
+            <div class="meal-item"><span class="meal-label bk">早</span> 酒店早餐</div>
+            <div class="meal-item"><span class="meal-label lk">午</span> 行程便當（船上）</div>
+            <div class="meal-item"><span class="meal-label dk">晚</span> Wonderland 海鮮 🦐</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ╔══════════════════ DAY 3 ══════════════════╗ -->
+    <div class="day-block" id="day-3">
+      <div class="day-header langkawi" role="button" aria-expanded="false" tabindex="0">
+        <div class="day-num">D<br>3</div>
+        <div class="day-info">
+          <div class="day-date">6月29日（一）· 浮羅交怡</div>
+          <div class="day-theme">🌉 天空之橋 Sky Bridge · 🏖️ 立咯海灘燈塔</div>
+        </div>
+        <div class="day-stay">🏠 Pelangi Beach Resort</div>
+        <span class="chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="day-body">
+        <div class="entry-list">
+
+          <div class="entry entry--sight">
+            <div class="time-badge">10:00–<br>13:00</div>
+            <div class="entry-icon">🌉</div>
+            <div class="entry-content">
+              <div class="entry-title">天空之橋 Sky Bridge <span class="info-tag info-tag--blue">必去</span></div>
+              <div class="entry-detail">搭乘纜車上山 → 走過 125 米弧形吊橋 → 俯瞰浮羅交怡全景及安達曼海</div>
+              <div class="entry-detail">📍 Langkawi Cable Car · SkyCab · 東方村</div>
+              <div class="entry-detail">🚗 建議自駕 / Grab 前往</div>
+            </div>
+          </div>
+
+          <div class="entry entry--sight">
+            <div class="time-badge">13:00–<br>14:30</div>
+            <div class="entry-icon">🍜</div>
+            <div class="entry-content">
+              <div class="entry-title">東方村內簡易午餐</div>
+              <div class="entry-detail">於東方村商店區享用午餐，推薦馬來椰漿飯 (Nasi Lemak) 或炒麵</div>
+            </div>
+          </div>
+
+          <div class="entry entry--beach">
+            <div class="time-badge">15:00–<br>17:00</div>
+            <div class="entry-icon">🏖️</div>
+            <div class="entry-content">
+              <div class="entry-title">立咯海灘燈塔打卡 <span class="info-tag info-tag--orange">日落打卡</span></div>
+              <div class="entry-detail">Tanjung Rhu 或 Pantai Kok 一帶海灘 · 紅樹林風光 · 燈塔取景</div>
+            </div>
+          </div>
+
+          <div class="meal-bar">
+            <div class="meal-item"><span class="meal-label bk">早</span> 馬來式早點（Roti Canai）🫓</div>
+            <div class="meal-item"><span class="meal-label lk">午</span> 東方村內簡易午餐</div>
+            <div class="meal-item"><span class="meal-label dk">晚</span> 珍南夜市美食 🌃</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ╔══════════════════ SINGAPORE ══════════════════╗ -->
+    <div class="region-divider">
+      <span class="region-label">🦁 新加坡 · Singapore</span>
+    </div>
+
+    <!-- ╔══════════════════ DAY 4 ══════════════════╗ -->
+    <div class="day-block" id="day-4">
+      <div class="day-header singapore" role="button" aria-expanded="false" tabindex="0">
+        <div class="day-num">D<br>4</div>
+        <div class="day-info">
+          <div class="day-date">6月30日（二）· 新加坡</div>
+          <div class="day-theme">✈️ LGK → 新加坡 · 🦉 夜間動物園</div>
+        </div>
+        <div class="day-stay">🏠 Hotel G / Parkroyal</div>
+        <span class="chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="day-body">
+        <div class="entry-list">
+
+          <div class="entry entry--flight">
+            <div class="time-badge">12:05</div>
+            <div class="entry-icon">✈️</div>
+            <div class="entry-content">
+              <div class="entry-title">浮羅交怡 出發 → 新加坡 <span class="booked-badge">✓ 已 Book</span></div>
+              <div class="boarding-pass">
+                <div class="bp-route">
+                  <span class="bp-airport">LGK</span>
+                  <div class="bp-arrow">✈️</div>
+                  <span class="bp-airport">SIN</span>
+                </div>
+                <div class="bp-details">
+                  <div class="bp-field">
+                    <span class="bp-field-label">航班</span>
+                    <span class="bp-field-val"><span class="flight-badge">AK 1711</span></span>
+                  </div>
+                  <div class="bp-field">
+                    <span class="bp-field-label">出發</span>
+                    <span class="bp-field-val">12:05</span>
+                  </div>
+                  <div class="bp-field">
+                    <span class="bp-field-label">抵達</span>
+                    <span class="bp-field-val">13:40</span>
+                  </div>
+                  <div class="bp-field">
+                    <span class="bp-field-label">航程</span>
+                    <span class="bp-field-val">直飛 1h 35m</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="entry entry--hotel">
+            <div class="time-badge">15:00</div>
+            <div class="entry-icon">🏨</div>
+            <div class="entry-content">
+              <div class="entry-title">酒店 Check-in</div>
+              <div class="entry-detail">Hotel G Singapore / Parkroyal · 市中心</div>
+            </div>
+          </div>
+
+          <div class="entry entry--transport">
+            <div class="time-badge">18:30</div>
+            <div class="entry-icon">🚗</div>
+            <div class="entry-content">
+              <div class="entry-title">Grab 往夜間動物園</div>
+              <div class="entry-detail">📍 Night Safari · 80 Mandai Lake Rd</div>
+            </div>
+          </div>
+
+          <div class="entry entry--night">
+            <div class="time-badge">19:15–<br>22:00</div>
+            <div class="entry-icon">🦉</div>
+            <div class="entry-content">
+              <div class="entry-title">新加坡 夜間動物園 <span class="info-tag info-tag--purple">需預約</span></div>
+              <div class="entry-detail">全球首個夜間野生動物園 · 觀賞夜行動物 🦁🐘🦏</div>
+              <div class="entry-detail">⚠️ 入園需提前網上預約時間，建議預早購票</div>
+            </div>
+          </div>
+
+          <div class="meal-bar">
+            <div class="meal-item"><span class="meal-label bk">早</span> 珍南文青 Cafe ☕</div>
+            <div class="meal-item"><span class="meal-label lk">午</span> 亞坤咖椰吐司 🍞</div>
+            <div class="meal-item"><span class="meal-label dk">晚</span> 夜間動物園餐館</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ╔══════════════════ DAY 5 ══════════════════╗ -->
+    <div class="day-block" id="day-5">
+      <div class="day-header singapore" role="button" aria-expanded="false" tabindex="0">
+        <div class="day-num">D<br>5</div>
+        <div class="day-info">
+          <div class="day-date">7月1日（三）· 新加坡</div>
+          <div class="day-theme">🎡 環球影城全日遊 · 🏖️ 聖淘沙沙灘</div>
+        </div>
+        <div class="day-stay">🏠 Hotel G / Parkroyal</div>
+        <span class="chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="day-body">
+        <div class="entry-list">
+
+          <div class="entry entry--transport">
+            <div class="time-badge">09:30</div>
+            <div class="entry-icon">🚇</div>
+            <div class="entry-content">
+              <div class="entry-title">MRT 往聖淘沙</div>
+              <div class="entry-detail">搭 MRT 至 HarbourFront 站，轉乘 Sentosa Express</div>
+            </div>
+          </div>
+
+          <div class="entry entry--theme">
+            <div class="time-badge">10:00–<br>18:00</div>
+            <div class="entry-icon">🎡</div>
+            <div class="entry-content">
+              <div class="entry-title">環球影城 全日遊 <span class="info-tag info-tag--orange">全日票</span></div>
+              <div class="entry-detail">熱門遊樂設施：哈利波特 🧙 · 變形金剛 🤖 · 侏羅紀公園 🦖</div>
+              <div class="entry-detail">建議早到排熱門設施，善用 Express Pass 節省等候時間</div>
+            </div>
+          </div>
+
+          <div class="entry entry--beach">
+            <div class="time-badge">19:00</div>
+            <div class="entry-icon">🌊</div>
+            <div class="entry-content">
+              <div class="entry-title">聖淘沙沙灘 散步</div>
+              <div class="entry-detail">Siloso Beach 或 Palawan Beach · 夜晚海風，放鬆身心</div>
+            </div>
+          </div>
+
+          <div class="meal-bar">
+            <div class="meal-item"><span class="meal-label bk">早</span> 酒店附近早餐</div>
+            <div class="meal-item"><span class="meal-label lk">午</span> 樂園內快餐 🍟</div>
+            <div class="meal-item"><span class="meal-label dk">晚</span> 馬來西亞美食街 🍜</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ╔══════════════════ DAY 6 ══════════════════╗ -->
+    <div class="day-block" id="day-6">
+      <div class="day-header singapore" role="button" aria-expanded="false" tabindex="0">
+        <div class="day-num">D<br>6</div>
+        <div class="day-info">
+          <div class="day-date">7月2日（四）· 新加坡</div>
+          <div class="day-theme">🌿 雲霧林溫室 · 🌳 超級樹燈光匯演</div>
+        </div>
+        <div class="day-stay">🏠 Hotel G / Parkroyal</div>
+        <span class="chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="day-body">
+        <div class="entry-list">
+
+          <div class="entry entry--transport">
+            <div class="time-badge">10:45</div>
+            <div class="entry-icon">🚇</div>
+            <div class="entry-content">
+              <div class="entry-title">MRT 往 Bayfront 站</div>
+              <div class="entry-detail">搭 MRT Circle Line 至 Bayfront → 步行至濱海灣花園</div>
+            </div>
+          </div>
+
+          <div class="entry entry--nature">
+            <div class="time-badge">11:30–<br>13:30</div>
+            <div class="entry-icon">🌿</div>
+            <div class="entry-content">
+              <div class="entry-title">新加坡溫室 — 雲霧林 Cloud Forest <span class="info-tag info-tag--green">必去</span></div>
+              <div class="entry-detail">35 米高室內瀑布 · 熱帶山地植物 · 空中步道俯瞰全景 🌺</div>
+              <div class="entry-detail">📍 Gardens by the Bay · 18 Marina Gardens Dr</div>
+            </div>
+          </div>
+
+          <div class="entry entry--sight">
+            <div class="time-badge">14:00–<br>17:00</div>
+            <div class="entry-icon">🍜</div>
+            <div class="entry-content">
+              <div class="entry-title">濱海灣附近自由活動</div>
+              <div class="entry-detail">Marina Bay Sands 商場購物 · 濱海灣金沙觀景台 · ArtScience Museum</div>
+            </div>
+          </div>
+
+          <div class="entry entry--sight">
+            <div class="time-badge">18:30</div>
+            <div class="entry-icon">🍢</div>
+            <div class="entry-content">
+              <div class="entry-title">老巴剎沙嗲一條街 <span class="info-tag info-tag--red">人氣小食</span></div>
+              <div class="entry-detail">Lau Pa Sat / Telok Ayer Market · 露天沙嗲夜市，新加坡必食體驗 🔥</div>
+            </div>
+          </div>
+
+          <div class="entry entry--night">
+            <div class="time-badge">19:45 /<br>20:45</div>
+            <div class="entry-icon">🌳</div>
+            <div class="entry-content">
+              <div class="entry-title">超級樹燈光匯演 Garden Rhapsody</div>
+              <div class="entry-detail">每晚 19:45 及 20:45 各一場 · 免費入場</div>
+              <div class="entry-detail">在超級樹下仰望燈光音樂匯演，夢幻壯觀 ✨</div>
+            </div>
+          </div>
+
+          <div class="meal-bar">
+            <div class="meal-item"><span class="meal-label bk">早</span> 松發肉骨茶 🍲</div>
+            <div class="meal-item"><span class="meal-label lk">午</span> 濱海灣附近美食</div>
+            <div class="meal-item"><span class="meal-label dk">晚</span> 老巴剎沙嗲一條街 🍢</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ╔══════════════════ RETURN ══════════════════╗ -->
+    <div class="region-divider">
+      <span class="region-label">✈️ 回程 · Return to Hong Kong</span>
+    </div>
+
+    <!-- ╔══════════════════ DAY 7 ══════════════════╗ -->
+    <div class="day-block" id="day-7">
+      <div class="day-header" role="button" aria-expanded="false" tabindex="0">
+        <div class="day-num">D<br>7</div>
+        <div class="day-info">
+          <div class="day-date">7月3日（五）· 回程</div>
+          <div class="day-theme">🛍️ 最後 Shopping · 💧 星耀樟宜瀑布 · ✈️ 回港</div>
+        </div>
+        <span class="chevron" aria-hidden="true">›</span>
+      </div>
+      <div class="day-body">
+        <div class="entry-list">
+
+          <div class="entry entry--shop">
+            <div class="time-badge">10:00–<br>12:00</div>
+            <div class="entry-icon">🛍️</div>
+            <div class="entry-content">
+              <div class="entry-title">市區最後 Shopping</div>
+              <div class="entry-detail">Orchard Road 商圈 · 精品店 · 特產手信</div>
+              <div class="entry-detail">🍳 早午餐：PS Cafe（蕨類植物分店）</div>
+            </div>
+          </div>
+
+          <div class="entry entry--transport">
+            <div class="time-badge">13:15</div>
+            <div class="entry-icon">🚗</div>
+            <div class="entry-content">
+              <div class="entry-title">前往樟宜機場</div>
+              <div class="entry-detail">建議 13:15 前抵達機場辦理登機手續</div>
+            </div>
+          </div>
+
+          <div class="entry entry--sight">
+            <div class="time-badge">13:30–<br>14:30</div>
+            <div class="entry-icon">💧</div>
+            <div class="entry-content">
+              <div class="entry-title">星耀樟宜 — 室內瀑布 Rain Vortex <span class="info-tag info-tag--blue">必去</span></div>
+              <div class="entry-detail">全球最高室內瀑布 (40 米) · 免費欣賞 · 感官震撼 🌊</div>
+              <div class="entry-detail">🍔 午餐：Jewel 內 Shake Shack</div>
+            </div>
+          </div>
+
+          <div class="entry entry--flight">
+            <div class="time-badge">15:25</div>
+            <div class="entry-icon">✈️</div>
+            <div class="entry-content">
+              <div class="entry-title">新加坡 出發 → 香港 <span class="booked-badge">✓ 已 Book</span></div>
+              <div class="boarding-pass">
+                <div class="bp-route">
+                  <span class="bp-airport">SIN</span>
+                  <div class="bp-arrow">✈️</div>
+                  <span class="bp-airport">HKG</span>
+                </div>
+                <div class="bp-details">
+                  <div class="bp-field">
+                    <span class="bp-field-label">航班</span>
+                    <span class="bp-field-val"><span class="flight-badge">TR 980</span></span>
+                  </div>
+                  <div class="bp-field">
+                    <span class="bp-field-label">出發</span>
+                    <span class="bp-field-val">15:25</span>
+                  </div>
+                  <div class="bp-field">
+                    <span class="bp-field-label">航空</span>
+                    <span class="bp-field-val">Scoot</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="meal-bar">
+            <div class="meal-item"><span class="meal-label bk">早</span> PS Cafe Brunch ☕</div>
+            <div class="meal-item"><span class="meal-label lk">午</span> Jewel · Shake Shack 🍔</div>
+            <div class="meal-item"><span class="meal-label dk">晚</span> 機上自理 ✈️</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>🌴 馬來西亞・新加坡 七日之旅 · 2026年 6月27日 — 7月3日</p>
+  <p style="margin-top:6px; opacity:0.7;">浮羅交怡 · 新加坡 · 安達曼海 · 濱海灣</p>
+</footer>
+
+<!-- ── Toast ── -->
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  /* ── Accordion ── */
+  document.querySelectorAll('.day-header').forEach(function(header) {
+    function toggle() {
+      var block = header.closest('.day-block');
+      var body  = block.querySelector('.day-body');
+      var chev  = header.querySelector('.chevron');
+      var open  = body.classList.contains('open');
+
+      if (open) {
+        body.style.maxHeight = '0';
+        body.classList.remove('open');
+        chev.classList.remove('open');
+        header.setAttribute('aria-expanded', 'false');
+      } else {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        body.classList.add('open');
+        chev.classList.add('open');
+        header.setAttribute('aria-expanded', 'true');
+      }
+    }
+    header.addEventListener('click', toggle);
+    header.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+
+  /* ── Auto-open Day 1 ── */
+  (function() {
+    var first = document.querySelector('#day-1 .day-body');
+    var chev  = document.querySelector('#day-1 .chevron');
+    var hdr   = document.querySelector('#day-1 .day-header');
+    if (first) {
+      first.style.maxHeight = '2000px';
+      first.classList.add('open');
+      if (chev) chev.classList.add('open');
+      if (hdr)  hdr.setAttribute('aria-expanded', 'true');
+    }
+  })();
+
+  /* ── Mobile Nav ── */
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobile-nav');
+  if (hamburger && mobileNav) {
+    hamburger.addEventListener('click', function() {
+      var open = mobileNav.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function(e) {
+      if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+        mobileNav.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    mobileNav.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        mobileNav.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  /* ── Active Link (IntersectionObserver) ── */
+  var navLinks = document.querySelectorAll('.day-nav-link, .mobile-nav .day-nav-link');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.id;
+        navLinks.forEach(function(link) {
+          var href = link.getAttribute('href');
+          if (href === '#' + id) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+  document.querySelectorAll('.day-block').forEach(function(block) {
+    observer.observe(block);
+  });
+</script>
+</body>
+</html>
