@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
   <style>
     /* ── Custom Properties ── */
     :root {
@@ -712,9 +714,86 @@
       .bp-details { gap: 10px; }
     }
 
+    /* ── Map Section ── */
+    #map-section {
+      background: var(--white);
+      padding: 60px 0 64px;
+      border-bottom: 1px solid var(--border);
+    }
+    #map-section .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .map-eyebrow {
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--slate-light);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .map-subtitle {
+      text-align: center;
+      color: var(--slate-mid);
+      font-size: 0.95rem;
+      margin-top: -32px;
+      margin-bottom: 28px;
+    }
+    #trip-map {
+      width: 100%;
+      height: 520px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      background: #e5edf5;
+      overflow: hidden;
+    }
+    #map-fallback {
+      display: none;
+      padding: 28px;
+      text-align: center;
+      color: var(--slate-mid);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .map-legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px 22px;
+      margin-top: 22px;
+      font-size: 0.82rem;
+      color: var(--slate-mid);
+    }
+    .map-legend-item { display: inline-flex; align-items: center; gap: 8px; }
+    .map-legend-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 2px solid var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+    .gm-iw-title {
+      font-family: var(--font-serif);
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .gm-iw-day {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--teal);
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+    .gm-iw-desc { font-size: 0.85rem; color: var(--slate-mid); line-height: 1.5; }
+    @media (max-width: 640px) {
+      #trip-map { height: 420px; }
+    }
+
     /* ── Print ── */
     @media print {
-      #site-header, #route { display: none; }
+      #site-header, #route, #map-section { display: none; }
       .day-body { max-height: none !important; opacity: 1 !important; overflow: visible !important; }
       .chevron { display: none; }
       .day-block { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; margin-bottom: 16px; }
@@ -775,6 +854,7 @@
     <a class="day-nav-link" href="#day-5">Day 5</a>
     <a class="day-nav-link" href="#day-6">Day 6</a>
     <a class="day-nav-link" href="#day-7">Day 7</a>
+    <a class="day-nav-link" href="#map-section">🗺️ 地圖</a>
   </nav>
   <button class="hamburger" aria-label="Open navigation" aria-expanded="false" id="hamburger">
     <span></span><span></span><span></span>
@@ -787,6 +867,7 @@
     <a class="day-nav-link" href="#day-5">Day 5 — 環球影城</a>
     <a class="day-nav-link" href="#day-6">Day 6 — 雲霧林·超級樹</a>
     <a class="day-nav-link" href="#day-7">Day 7 — 回程·香港</a>
+    <a class="day-nav-link" href="#map-section">🗺️ 行程地圖</a>
   </nav>
 </header>
 
@@ -1364,6 +1445,29 @@
   </div>
 </section>
 
+<!-- ── Map ── -->
+<section id="map-section">
+  <div class="container">
+    <p class="map-eyebrow">Trip Map</p>
+    <h2 class="section-title">行程地圖</h2>
+    <p class="map-subtitle">點擊地圖標記查看每個目的地詳情 · 共 14 個景點</p>
+    <div id="trip-map" role="region" aria-label="馬來西亞・新加坡行程地圖">
+      <div id="map-fallback">
+        <p>📍 地圖載入中… 若長時間未顯示，請檢查網絡連線（地圖資源來自 OpenStreetMap / unpkg CDN）。</p>
+      </div>
+    </div>
+    <div class="map-legend" aria-label="地圖圖例">
+      <span class="map-legend-item"><span class="map-legend-dot" style="background:#0e7490"></span>機場</span>
+      <span class="map-legend-item"><span class="map-legend-dot" style="background:#0d2847"></span>城市地標</span>
+      <span class="map-legend-item"><span class="map-legend-dot" style="background:#15803d"></span>自然景點</span>
+      <span class="map-legend-item"><span class="map-legend-dot" style="background:#0077b6"></span>海灘</span>
+      <span class="map-legend-item"><span class="map-legend-dot" style="background:#d97706"></span>美食</span>
+      <span class="map-legend-item"><span class="map-legend-dot" style="background:#7c3aed"></span>主題樂園</span>
+      <span class="map-legend-item"><span class="map-legend-dot" style="background:#ca8a04"></span>購物</span>
+    </div>
+  </div>
+</section>
+
 <!-- ── Footer ── -->
 <footer>
   <p>🌴 馬來西亞・新加坡 七日之旅 · 2026年 6月27日 — 7月3日</p>
@@ -1456,6 +1560,101 @@
   document.querySelectorAll('.day-block').forEach(function(block) {
     observer.observe(block);
   });
+
+  /* ── Leaflet + OpenStreetMap: 行程目的地 ── */
+  window.MALAYSIA_DESTINATIONS = [
+    { day: 'Day 1', name: '浮羅交怡機場 LGK', desc: '抵達後 Grab 前往珍南海灘酒店（約 20 分鐘）', lat: 6.3297, lng: 99.7286, type: 'flight' },
+    { day: 'Day 1', name: 'Pelangi Beach Resort & Spa', desc: '珍南海灘度假村，連住三晚；夜遊珍南大街', lat: 6.3007, lng: 99.7282, type: 'beach' },
+    { day: 'Day 2', name: '芭雅島 Pulau Payar', desc: '馬來西亞著名珊瑚礁保護區 · 潛水 / 浮潛', lat: 6.0667, lng: 100.0500, type: 'nature' },
+    { day: 'Day 2', name: '瓜鎮免稅店 Kuah Town', desc: 'Langkawi Fair Shopping Mall · 朱古力與手信掃貨', lat: 6.3197, lng: 99.8533, type: 'shop' },
+    { day: 'Day 3', name: '天空之橋 Sky Bridge', desc: '搭纜車登山 · 125 米弧形吊橋 · 俯瞰安達曼海', lat: 6.3815, lng: 99.6675, type: 'nature' },
+    { day: 'Day 3', name: 'Tanjung Rhu 立咯燈塔海灘', desc: '紅樹林風光 · 燈塔取景 · 日落打卡', lat: 6.4622, lng: 99.8200, type: 'beach' },
+    { day: 'Day 4', name: '新加坡樟宜機場 SIN', desc: 'AK 1711 抵達 · 轉乘市區酒店', lat: 1.3644, lng: 103.9915, type: 'flight' },
+    { day: 'Day 4', name: '新加坡 夜間動物園 Night Safari', desc: '全球首個夜間野生動物園 · 觀賞夜行動物', lat: 1.4019, lng: 103.7882, type: 'nature' },
+    { day: 'Day 5', name: '新加坡 環球影城 USS', desc: '哈利波特 · 變形金剛 · 侏羅紀公園 · 全日票', lat: 1.2540, lng: 103.8238, type: 'theme' },
+    { day: 'Day 5', name: '聖淘沙 Siloso Beach', desc: '夜晚海風散步，聖淘沙沙灘放鬆身心', lat: 1.2486, lng: 103.8147, type: 'beach' },
+    { day: 'Day 6', name: '雲霧林 Cloud Forest', desc: 'Gardens by the Bay · 35 米室內瀑布 · 空中步道', lat: 1.2853, lng: 103.8636, type: 'nature' },
+    { day: 'Day 6', name: '老巴剎沙嗲一條街', desc: 'Lau Pa Sat · 露天沙嗲夜市，新加坡必食體驗', lat: 1.2806, lng: 103.8503, type: 'food' },
+    { day: 'Day 6', name: '超級樹 Supertree Grove', desc: '19:45 / 20:45 燈光音樂匯演 Garden Rhapsody', lat: 1.2828, lng: 103.8636, type: 'city' },
+    { day: 'Day 7', name: '星耀樟宜 Jewel · Rain Vortex', desc: '全球最高室內瀑布 (40 米) · 機場內必訪地標', lat: 1.3601, lng: 103.9899, type: 'city' }
+  ];
+
+  function initLeafletMap() {
+    var dests = window.MALAYSIA_DESTINATIONS;
+    var mapEl = document.getElementById('trip-map');
+    if (!mapEl || !window.L) return;
+
+    var fallback = document.getElementById('map-fallback');
+    if (fallback) fallback.style.display = 'none';
+
+    var typeColor = {
+      flight: '#0e7490',
+      city:   '#0d2847',
+      nature: '#15803d',
+      beach:  '#0077b6',
+      food:   '#d97706',
+      theme:  '#7c3aed',
+      shop:   '#ca8a04'
+    };
+
+    var map = L.map(mapEl, { scrollWheelZoom: false });
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var latlngs = [];
+    dests.forEach(function (d, idx) {
+      var color = typeColor[d.type] || '#0d2847';
+      var icon = L.divIcon({
+        className: 'trip-marker',
+        html:
+          '<div style="width:28px;height:28px;border-radius:50%;background:' + color +
+          ';border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.35);' +
+          'display:flex;align-items:center;justify-content:center;color:#fff;' +
+          'font-size:12px;font-weight:700;line-height:1">' + (idx + 1) + '</div>',
+        iconSize: [28, 28],
+        iconAnchor: [14, 14],
+        popupAnchor: [0, -14]
+      });
+      var marker = L.marker([d.lat, d.lng], { icon: icon, title: d.name }).addTo(map);
+      var popupHtml =
+        '<div style="max-width:240px;padding:2px">' +
+          '<span class="gm-iw-day">' + d.day + '</span>' +
+          '<div class="gm-iw-title">' + d.name + '</div>' +
+          '<div class="gm-iw-desc">' + d.desc + '</div>' +
+        '</div>';
+      marker.bindPopup(popupHtml);
+      latlngs.push([d.lat, d.lng]);
+    });
+
+    L.polyline(latlngs, {
+      color: '#0e7490',
+      weight: 3,
+      opacity: 0.85,
+      dashArray: '6 8'
+    }).addTo(map);
+
+    map.fitBounds(latlngs, { padding: [40, 40] });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLeafletMap);
+  } else {
+    initLeafletMap();
+  }
+
+  setTimeout(function () {
+    if (!window.L) {
+      var fb = document.getElementById('map-fallback');
+      if (fb) fb.style.display = 'block';
+    }
+  }, 6000);
 </script>
+
+<!-- Leaflet (OpenStreetMap) -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
 </body>
 </html>
